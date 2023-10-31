@@ -6,7 +6,12 @@ const EslintPlugin = require('eslint-webpack-plugin');
 module.exports = (env, options) => {
   const isProduction = options.mode === 'production';
   const config = {
-    entry: './src/index.tsx',
+    entry: {
+      main: './src/index.tsx',
+      tabTable: './src/script/tabs/dummyTable.tsx',
+      tabList: './src/script/tabs/dummyList.tsx',
+      tabChart: './src/script/tabs/dummyChart.tsx',
+    },
     plugins: [
       new HtmlWebpackPlugin({
         title: 'EvgeniaM6 - backendless-test-task',
