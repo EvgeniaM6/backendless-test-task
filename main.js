@@ -17,10 +17,10 @@
 /* harmony export */   aU: () => (/* binding */ Action),
 /* harmony export */   cP: () => (/* binding */ parsePath),
 /* harmony export */   fp: () => (/* binding */ matchRoutes),
-/* harmony export */   lX: () => (/* binding */ createBrowserHistory),
-/* harmony export */   pC: () => (/* binding */ resolveTo)
+/* harmony export */   pC: () => (/* binding */ resolveTo),
+/* harmony export */   q_: () => (/* binding */ createHashHistory)
 /* harmony export */ });
-/* unused harmony exports IDLE_BLOCKER, IDLE_FETCHER, IDLE_NAVIGATION, UNSAFE_DEFERRED_SYMBOL, UNSAFE_DeferredData, UNSAFE_ErrorResponseImpl, UNSAFE_convertRouteMatchToUiMatch, UNSAFE_convertRoutesToDataRoutes, UNSAFE_warning, createHashHistory, createMemoryHistory, createRouter, createStaticHandler, defer, generatePath, getStaticContextFromError, getToPathname, isDeferredData, json, normalizePathname, redirect, redirectDocument, resolvePath */
+/* unused harmony exports IDLE_BLOCKER, IDLE_FETCHER, IDLE_NAVIGATION, UNSAFE_DEFERRED_SYMBOL, UNSAFE_DeferredData, UNSAFE_ErrorResponseImpl, UNSAFE_convertRouteMatchToUiMatch, UNSAFE_convertRoutesToDataRoutes, UNSAFE_warning, createBrowserHistory, createMemoryHistory, createRouter, createStaticHandler, defer, generatePath, getStaticContextFromError, getToPathname, isDeferredData, json, normalizePathname, redirect, redirectDocument, resolvePath */
 /**
  * @remix-run/router v1.10.0
  *
@@ -4682,9 +4682,9 @@ if (true) {
 var react__WEBPACK_IMPORTED_MODULE_0___namespace_cache;
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   OL: () => (/* binding */ NavLink),
-/* harmony export */   VK: () => (/* binding */ BrowserRouter)
+/* harmony export */   UT: () => (/* binding */ HashRouter)
 /* harmony export */ });
-/* unused harmony exports Form, HashRouter, Link, RouterProvider, ScrollRestoration, UNSAFE_ViewTransitionContext, UNSAFE_useScrollRestoration, createBrowserRouter, createHashRouter, createSearchParams, unstable_HistoryRouter, unstable_usePrompt, unstable_useViewTransitionState, useBeforeUnload, useFetcher, useFetchers, useFormAction, useLinkClickHandler, useSearchParams, useSubmit */
+/* unused harmony exports BrowserRouter, Form, Link, RouterProvider, ScrollRestoration, UNSAFE_ViewTransitionContext, UNSAFE_useScrollRestoration, createBrowserRouter, createHashRouter, createSearchParams, unstable_HistoryRouter, unstable_usePrompt, unstable_useViewTransitionState, useBeforeUnload, useFetcher, useFetchers, useFormAction, useLinkClickHandler, useSearchParams, useSubmit */
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(294);
 /* harmony import */ var react_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(250);
 /* harmony import */ var _remix_run_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(599);
@@ -5203,26 +5203,26 @@ function BrowserRouter(_ref4) {
     future,
     window
   } = _ref4;
-  let historyRef = react__WEBPACK_IMPORTED_MODULE_0__.useRef();
+  let historyRef = React.useRef();
   if (historyRef.current == null) {
-    historyRef.current = (0,_remix_run_router__WEBPACK_IMPORTED_MODULE_1__/* .createBrowserHistory */ .lX)({
+    historyRef.current = createBrowserHistory({
       window,
       v5Compat: true
     });
   }
   let history = historyRef.current;
-  let [state, setStateImpl] = react__WEBPACK_IMPORTED_MODULE_0__.useState({
+  let [state, setStateImpl] = React.useState({
     action: history.action,
     location: history.location
   });
   let {
     v7_startTransition
   } = future || {};
-  let setState = react__WEBPACK_IMPORTED_MODULE_0__.useCallback(newState => {
+  let setState = React.useCallback(newState => {
     v7_startTransition && startTransitionImpl ? startTransitionImpl(() => setStateImpl(newState)) : setStateImpl(newState);
   }, [setStateImpl, v7_startTransition]);
-  react__WEBPACK_IMPORTED_MODULE_0__.useLayoutEffect(() => history.listen(setState), [history, setState]);
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router__WEBPACK_IMPORTED_MODULE_2__/* .Router */ .F0, {
+  React.useLayoutEffect(() => history.listen(setState), [history, setState]);
+  return /*#__PURE__*/React.createElement(Router, {
     basename: basename,
     children: children,
     location: state.location,
@@ -5241,26 +5241,26 @@ function HashRouter(_ref5) {
     future,
     window
   } = _ref5;
-  let historyRef = React.useRef();
+  let historyRef = react__WEBPACK_IMPORTED_MODULE_0__.useRef();
   if (historyRef.current == null) {
-    historyRef.current = createHashHistory({
+    historyRef.current = (0,_remix_run_router__WEBPACK_IMPORTED_MODULE_1__/* .createHashHistory */ .q_)({
       window,
       v5Compat: true
     });
   }
   let history = historyRef.current;
-  let [state, setStateImpl] = React.useState({
+  let [state, setStateImpl] = react__WEBPACK_IMPORTED_MODULE_0__.useState({
     action: history.action,
     location: history.location
   });
   let {
     v7_startTransition
   } = future || {};
-  let setState = React.useCallback(newState => {
+  let setState = react__WEBPACK_IMPORTED_MODULE_0__.useCallback(newState => {
     v7_startTransition && startTransitionImpl ? startTransitionImpl(() => setStateImpl(newState)) : setStateImpl(newState);
   }, [setStateImpl, v7_startTransition]);
-  React.useLayoutEffect(() => history.listen(setState), [history, setState]);
-  return /*#__PURE__*/React.createElement(Router, {
+  react__WEBPACK_IMPORTED_MODULE_0__.useLayoutEffect(() => history.listen(setState), [history, setState]);
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router__WEBPACK_IMPORTED_MODULE_2__/* .Router */ .F0, {
     basename: basename,
     children: children,
     location: state.location,
@@ -8342,7 +8342,7 @@ var update = injectStylesIntoStyleTag_default()(styles/* default */.Z, options);
 
 
 
-client.createRoot(document.getElementById('root')).render((0,jsx_runtime.jsx)(dist/* BrowserRouter */.VK, { children: (0,jsx_runtime.jsx)(App.App, {}) }));
+client.createRoot(document.getElementById('root')).render((0,jsx_runtime.jsx)(dist/* HashRouter */.UT, { children: (0,jsx_runtime.jsx)(App.App, {}) }));
 
 })();
 
