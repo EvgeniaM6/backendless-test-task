@@ -1,5 +1,6 @@
 {
   "name": "backendless-test-task",
+  "homepage": "http://EvgeniaM6.github.io/backendless-test-task",
   "version": "1.0.0",
   "description": "",
   "private": true,
@@ -7,6 +8,7 @@
     "start": "webpack serve --open",
     "prod": "webpack --mode production --config webpack.config.js",
     "dev": "webpack --mode development --config webpack.config.js",
+    "deploy": "gh-pages -d build",
     "style": "sass --watch src/sass/style.scss src/sass/style.css",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -16,6 +18,7 @@
   "devDependencies": {
     "css-loader": "^6.7.1",
     "eslint-plugin-prettier": "^5.0.0-alpha.2",
+    "gh-pages": "^6.0.0",
     "html-webpack-plugin": "^5.5.0",
     "json5-loader": "^4.0.1",
     "sass": "^1.54.3",
