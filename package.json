@@ -8,7 +8,7 @@
     "start": "webpack serve --open",
     "prod": "webpack --mode production --config webpack.config.js",
     "dev": "webpack --mode development --config webpack.config.js",
-    "deploy": "gh-pages -d build",
+    "deploy": "gh-pages -d dist",
     "style": "sass --watch src/sass/style.scss src/sass/style.css",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
