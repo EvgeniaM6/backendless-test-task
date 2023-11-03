@@ -1,3 +1,3 @@
-import { NavElemProps, TabData } from './tabs.model';
+import { LazyTabComponent, NavElemProps, TabData } from './tabs.model';
 
-export { TabData, NavElemProps };
+export { TabData, NavElemProps, LazyTabComponent };

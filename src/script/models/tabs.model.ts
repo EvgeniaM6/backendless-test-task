@@ -8,3 +8,5 @@ export type TabData = {
 export type NavElemProps = {
   tabData: TabData;
 };
+
+export type LazyTabComponent = React.LazyExoticComponent<React.ComponentType<unknown>>;

@@ -1,44 +1,32 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
-import { Suspense, lazy, useEffect, useState } from 'react';
+import { Suspense, lazy } from 'react';
 import { ErrorBoundaryElem, Header, Loading } from './components';
 import tabsArr from './tabs.json';
-import { TabData } from './models';
-import { useLocation } from 'react-router-dom';
+import { LazyTabComponent, TabData } from './models';
+import { Route, Routes } from 'react-router-dom';
 
-let DummyComponent: React.LazyExoticComponent<React.ComponentType<unknown>>;
-
-const getLazyDummyComponent = (pathStr: string) => {
-  DummyComponent = lazy(
-    () =>
-      new Promise((resolve) =>
-        resolve(
-          require(
-            /* webpackPrefetch: true */ /* webpackChunkName: "my-chunk-name" */ /* webpackMode: "lazy" */ `${pathStr}`
-          )
-        )
-      )
-  );
+const getLazyComponent = (pathStr: string): LazyTabComponent => {
+  return lazy(() => import(`${pathStr}`));
 };
 
-export const App = () => {
-  const [currId, setCurrId] = useState(tabsArr[0].id);
+const renderTab = (path: string): JSX.Element => {
+  const Tab: LazyTabComponent = getLazyComponent(path);
+  return <Tab />;
+};
 
-  const location = useLocation();
-
-  getLazyDummyComponent(currId);
-
-  useEffect(() => {
-    const newPathname = location.pathname.slice(1);
-    const newTabData = tabsArr.find((tabData: TabData) => tabData.id === newPathname);
-    setCurrId(newTabData?.path || tabsArr[0].path);
-  }, [location]);
+export const App = (): JSX.Element => {
+  const defaultTab: TabData | undefined = tabsArr.find((tab: TabData) => tab.order === 0);
 
   return (
     <>
       <Header />
       <ErrorBoundaryElem>
         <Suspense fallback={<Loading />}>
-          <DummyComponent />
+          <Routes>
+            {defaultTab && <Route path="/" element={renderTab(defaultTab.path)} />}
+            {tabsArr.map((tabObj: TabData) => (
+              <Route path={`/${tabObj.id}`} element={renderTab(tabObj.path)} key={tabObj.id} />
+            ))}
+          </Routes>
         </Suspense>
       </ErrorBoundaryElem>
     </>
