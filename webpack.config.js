@@ -8,9 +8,6 @@ module.exports = (env, options) => {
   const config = {
     entry: {
       main: './src/index.tsx',
-      tabTable: './src/script/tabs/dummyTable.tsx',
-      tabList: './src/script/tabs/dummyList.tsx',
-      tabChart: './src/script/tabs/dummyChart.tsx',
     },
     plugins: [
       new HtmlWebpackPlugin({
@@ -35,7 +32,13 @@ module.exports = (env, options) => {
       clean: true,
     },
     optimization: {
-      runtimeChunk: 'single',
+      minimize: false,
+      splitChunks: {
+        chunks: 'all',
+        cacheGroups: {
+          defaultVendors: false,
+        },
+      },
     },
     mode: isProduction ? 'production' : 'development',
     module: {
@@ -43,7 +46,15 @@ module.exports = (env, options) => {
         {
           test: /\.tsx?$/,
           include: path.resolve(__dirname, 'src'),
-          use: 'ts-loader'
+          exclude: /node_modules|\.d\.ts$/,
+          use: {
+            loader: 'ts-loader',
+            options: {
+              compilerOptions: {
+                noEmit: false,
+              },
+            },
+          },
         },
         {
           test: /\.s?[ac]ss$/i,

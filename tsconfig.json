@@ -5,7 +5,7 @@
     "sourceMap": true,
     "noImplicitAny": true,
     "strict": true,
-    "module": "commonjs",
+    "module": "esnext",
     "target": "es6",
     "allowJs": true,
     "moduleResolution": "node",
@@ -13,6 +13,11 @@
     "jsx": "react-jsx",
     "esModuleInterop": true,
     "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true,
+    "noFallthroughCasesInSwitch": true,
+    "noEmit": true
   },
   "exclude": ["node_modules", "/"],
   "include": ["src/**/*"]
